@@ -18,12 +18,12 @@
                     @forelse ($comments as $comment)
                         <div class="card mt-2">
                             <div class="card-header bg-none">
-                                <span class="fw-bold text-capitalize">{{ $comment['user'] }}</span> -- <span
-                                    class="text-dark fs-6 lh-sm">{{ $comment['created_at'] }}</span>
+                                <span class="fw-bold text-capitalize">{{ $comment->user->name }}</span> -- <span
+                                    class="text-dark fs-6 lh-sm">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>
                             <div class="card-body">
                                 <div class="col-12">
-                                    {{ $comment['body'] }}
+                                    {{ $comment->body }}
                                 </div>
                             </div>
                         </div>
