@@ -11,13 +11,19 @@ class Comments extends Component
     public $comments;
     public $content;
 
+    protected $rules = [
+        'content' => 'required|min:6|max:255'
+    ];
+
     public function mount()
     {
-        $this->comments = ModelsComments::all();
+        // $this->comments = ModelsComments::all()->sortBy('created_at');
+        $this->comments = ModelsComments::orderBy('created_at','desc')->get();
     }
 
     public function addComment()
     {
+        $this->validate();
         $createdComment = ModelsComments::Create([
             "body"=>$this->content,
             "user_id"=>"1"

@@ -7,6 +7,12 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
+                        @error('content')
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @enderror
                         <form wire:submit.prevent="addComment">
                             <div class="input-group">
                                 <input type="text" class="form-control" id="inlineFormInputGroupUsername"
