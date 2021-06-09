@@ -32,6 +32,13 @@ class Comments extends Component
         $this->content = "";
     }
 
+    public function removeComment($commentId){
+        $com = ModelsComments::findOrFail($commentId);
+        if($com->delete()){
+            $this->comments = $this->comments->except($commentId);
+        }
+    }
+
     public function render()
     {
         return view('livewire.comments');

@@ -26,6 +26,7 @@
                             <div class="card-header bg-none">
                                 <span class="fw-bold text-capitalize">{{ $comment->user->name }}</span> -- <span
                                     class="text-dark fs-6 lh-sm">{{ $comment->created_at->diffForHumans() }}</span>
+                                    <button type="button" wire:click="removeComment({{ $comment->id }})" class="btn btn-light float-end">X</button>
                             </div>
                             <div class="card-body">
                                 <div class="col-12">
