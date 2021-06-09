@@ -30,6 +30,7 @@ class Comments extends Component
         ]);
         $this->comments->prepend($createdComment);
         $this->content = "";
+        session()->flash('message', 'Comment Added successfully.');
     }
 
     public function removeComment($commentId){
@@ -37,6 +38,7 @@ class Comments extends Component
         if($com->delete()){
             $this->comments = $this->comments->except($commentId);
         }
+        session()->flash('message', 'Comment Removed successfully.');
     }
 
     public function render()
