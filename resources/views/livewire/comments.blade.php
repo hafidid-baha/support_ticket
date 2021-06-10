@@ -43,7 +43,6 @@
                     @empty
                         <mark>No Comments found</mark>
                     @endforelse
-
                 </div>
             </div>
         </div>

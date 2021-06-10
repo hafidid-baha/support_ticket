@@ -5,10 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Comments as ModelsComments;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Comments extends Component
 {
-    public $comments;
+
+    use WithPagination;
+    // public $comments;
     public $content;
 
     protected $rules = [
@@ -18,7 +21,7 @@ class Comments extends Component
     public function mount()
     {
         // $this->comments = ModelsComments::all()->sortBy('created_at');
-        $this->comments = ModelsComments::orderBy('created_at','desc')->get();
+        // $this->comments = ModelsComments::orderBy('created_at','desc')->get();
     }
 
     public function addComment()
@@ -43,6 +46,8 @@ class Comments extends Component
 
     public function render()
     {
-        return view('livewire.comments');
+        return view('livewire.comments',[
+            'comments' => ModelsComments::latest()->paginate(10)
+        ]);
     }
 }
