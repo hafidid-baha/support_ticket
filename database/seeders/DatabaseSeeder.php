@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comments;
 use App\Models\User;
+use Egulias\EmailValidator\Warning\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(10)->create();
+        Comments::factory(100)->create();
     }
 }
