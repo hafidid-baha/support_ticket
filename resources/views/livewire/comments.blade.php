@@ -43,6 +43,8 @@
                     @empty
                         <mark>No Comments found</mark>
                     @endforelse
+                    <span class="d-block mt-2"></span>
+                    {{ $comments->links() }}
                 </div>
             </div>
         </div>

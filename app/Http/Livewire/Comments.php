@@ -11,6 +11,7 @@ class Comments extends Component
 {
 
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     // public $comments;
     public $content;
 
