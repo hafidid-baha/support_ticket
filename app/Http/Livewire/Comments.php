@@ -5,49 +5,52 @@ namespace App\Http\Livewire;
 use App\Models\Comments as ModelsComments;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class Comments extends Component
 {
 
     use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    // public $comments;
-    public $content;
+    use WithFileUploads;
 
-    protected $rules = [
-        'content' => 'required|min:6|max:255'
-    ];
+    protected $paginationTheme = 'bootstrap',
+        $rules = [
+            'content' => 'required|min:6|max:255',
+            'photo' => 'image|max:1024'
+        ];
 
-    public function mount()
-    {
-        // $this->comments = ModelsComments::all()->sortBy('created_at');
-        // $this->comments = ModelsComments::orderBy('created_at','desc')->get();
-    }
+    public $photo,
+        $content;
+
+
+
 
     public function addComment()
     {
         $this->validate();
-        $createdComment = ModelsComments::Create([
-            "body"=>$this->content,
-            "user_id"=>"1"
+        // upload photo to the server
+        $this->photo->store('photos');
+
+        ModelsComments::Create([
+            "body" => $this->content,
+            "user_id" => "1"
         ]);
-        $this->comments->prepend($createdComment);
+
         $this->content = "";
+        $this->photo = null;
         session()->flash('message', 'Comment Added successfully.');
     }
 
-    public function removeComment($commentId){
-        $com = ModelsComments::findOrFail($commentId);
-        if($com->delete()){
-            $this->comments = $this->comments->except($commentId);
-        }
+    public function removeComment($commentId)
+    {
+        ModelsComments::findOrFail($commentId);
         session()->flash('message', 'Comment Removed successfully.');
     }
 
     public function render()
     {
-        return view('livewire.comments',[
+        return view('livewire.comments', [
             'comments' => ModelsComments::latest()->paginate(10)
         ]);
     }
