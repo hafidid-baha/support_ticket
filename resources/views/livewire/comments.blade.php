@@ -56,6 +56,12 @@
                             <div class="col-12">
                                 {{ $comment->body }}
                             </div>
+                            @if ($comment->image)
+                            <div class="mb-2">
+                                <img src="{{ asset("storage/photos/".$comment->image) }}" class="img-thumbnail"
+                                    width="200" height="200">
+                            </div>
+                            @endif
                         </div>
                     </div>
                     @empty
