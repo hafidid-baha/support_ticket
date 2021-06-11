@@ -11,12 +11,12 @@ class Comments extends Model
 
     public $fillable = [
         "body",
-        "user_id"
+        "user_id",
+        "image"
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
 }

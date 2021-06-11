@@ -34,7 +34,8 @@ class Comments extends Component
 
         ModelsComments::Create([
             "body" => $this->content,
-            "user_id" => "1"
+            "user_id" => rand(1, 10),
+            "image" => $this->photo != null ? $this->photo->getFilename() : null,
         ]);
 
         $this->content = "";
