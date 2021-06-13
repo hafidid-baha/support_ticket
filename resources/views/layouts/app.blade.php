@@ -8,8 +8,9 @@
     <title>Support Tickets Project</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
         integrity="undefined" crossorigin="anonymous">
-    <livewire:styles />
-    <livewire:scripts />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined"
+        crossorigin="anonymous"></script>
+    @livewireStyles
 </head>
 
 <body>
@@ -39,11 +40,22 @@
         </nav>
     </header>
 
-    @yield('content')
+    @if (Route::currentRouteName()=="home")
+    <livewire:comments />
+    @elseif(Route::currentRouteName()=="login")
+    <livewire:login />
+    @elseif(Route::currentRouteName()=="register")
+    <livewire:register />
+    @endif
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined"
-        crossorigin="anonymous"></script>
+    @livewireScripts
     <script src="{{ asset("js/app.js") }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
+        data-turbolinks-eval="false"></script>
+
+
+
+
 </body>
 
 </html>
